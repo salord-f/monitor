@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Express</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+<h1>Monitor</h1>
+<p>Welcome to a (very) basic mac monitor</p>
+
+<section id="temperature">
+
+</section>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://localhost:3000');
+
+    socket.emit('connection');
+
+    socket.on('iostat', function (cpu_temp) {
+        $('#temperature').append('<p>' + cpu_temp + '</p>');
+        socket.emit('connection');
+    });
+
+</script>
+</body>
+
+</html>
