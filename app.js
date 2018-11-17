@@ -16,7 +16,8 @@ io.sockets.on('connection', function (socket) {
 });
 
 function emit_cpu_temp() {
-    const {code} = shell.exec('c/cpu_temp', {silent: true});
+    const {code} = shell.exec('c/cpu_temp');
+    io.emit('iostat', shell.exec('top -R -F -n0 -s3 -l 1 | grep "CPU usage"', {silent: true}));
     io.emit('iostat', code);
 }
 
