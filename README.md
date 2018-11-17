@@ -15,9 +15,9 @@ or directly from [Intel website](https://software.intel.com/en-us/articles/intel
 
 ```
 cd dirname;
-gcc -o c/cpu_temp c/cpu_temp.c -framework IntelPowerGadget;
-npm install;
-node app.js;
+bash build.sh;
 ```
 
+##Run
+```node app.js```  
 Server is launched on ```http://localhost:3000/```
