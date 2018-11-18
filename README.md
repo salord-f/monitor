@@ -14,7 +14,6 @@ or directly from [Intel website](https://software.intel.com/en-us/articles/intel
 ##Build
 
 ```
-cd dirname;
 bash build.sh;
 ```
 
