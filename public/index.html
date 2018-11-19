@@ -11,87 +11,14 @@
 <h1>Monitor</h1>
 <p>Welcome to a (very) basic mac monitor</p>
 
+<canvas id="chart_cpu_temp"></canvas>
+<canvas id="chart_cpu_load"></canvas>
+
+
 <script src="/chart.js/Chart.min.js"></script>
-
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-
-<canvas id="tempChart"></canvas>
-<section id="temperature">
-
-</section>
-
-<script>
-    var socket = io.connect('http://localhost:3000');
-
-    socket.emit('connection');
-
-    socket.on('cpu_load', function (data) {
-        $('#temperature').append('<p>' + data + '</p>');
-    });
-
-    var data = {
-        datasets: [{
-            label: 'CPU Temperature',
-            data: [],
-        }]
-    };
-
-    var tempChart = new Chart(document.getElementById("tempChart"), {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: false,
-            width: 1000,
-            height: 600,
-            scales: {
-                yAxes:
-                    [{
-                        ticks: {
-                            min: 40,
-                            max: 100,
-                            stepSize: 10
-                        }
-                    }],
-            },
-
-            // performance
-            animation:
-                {
-                    duration: 0, // general animation time
-                }
-            ,
-            elements: {
-                line: {
-                    tension: 0, // disables bezier curves
-                }
-            }
-        }
-    });
-
-    var i = 0;
-    socket.on('temp', function (data) {
-        addData(tempChart, '', data);
-        if (i++ > 50) {
-            popFirst(tempChart);
-        }
-    });
-
-    function addData(chart, label, data) {
-        chart.data.labels.push(label);
-        chart.data.datasets.forEach((dataset) => {
-            dataset.data.push(data);
-        });
-        chart.update();
-    }
-
-    function popFirst(chart) {
-        console.log(chart.data);
-        chart.data.labels.shift();
-        chart.data.datasets[0].data.shift();
-    }
-
-</script>
+<script src="chart_cpu_temp.js"></script>
+<script src="chart_cpu_load.js"></script>
 </body>
 
 </html>

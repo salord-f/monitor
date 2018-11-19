@@ -26,7 +26,7 @@ app.use(morgan('combined'))
 function update_data() {
     const {code} = shell.exec('c/cpu_temp');
     io.emit('cpu_load', shell.exec('top -R -F -n0 -s3 -l 1 | grep "CPU usage"', {silent: true}));
-    io.emit('temp', code);
+    io.emit('cpu_temp', code);
 }
 
 setInterval(update_data, 1000);
