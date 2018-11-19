@@ -2,7 +2,7 @@ var socket = io.connect('http://localhost:3000', {
     reconnection: false
 });
 
-const colors = {
+const cpu_load_colors = {
     red: {
         fill: '#ff762e',
         stroke: '#ff0000',
@@ -18,17 +18,17 @@ var chart_cpu_load = new Chart(document.getElementById("chart_cpu_load"), {
     data: {
         datasets: [{
             label: 'system',
-            backgroundColor: colors.darkBlue.fill,
-            pointBackgroundColor: colors.darkBlue.stroke,
-            borderColor: colors.darkBlue.stroke,
-            pointHighlightStroke: colors.darkBlue.stroke,
+            backgroundColor: cpu_load_colors.darkBlue.fill,
+            pointBackgroundColor: cpu_load_colors.darkBlue.stroke,
+            borderColor: cpu_load_colors.darkBlue.stroke,
+            pointHighlightStroke: cpu_load_colors.darkBlue.stroke,
             data: []
         }, {
             label: 'user',
-            backgroundColor: colors.red.fill,
-            pointBackgroundColor: colors.red.stroke,
-            borderColor: colors.red.stroke,
-            pointHighlightStroke: colors.red.stroke,
+            backgroundColor: cpu_load_colors.red.fill,
+            pointBackgroundColor: cpu_load_colors.red.stroke,
+            borderColor: cpu_load_colors.red.stroke,
+            pointHighlightStroke: cpu_load_colors.red.stroke,
             data: []
         }]
     },
