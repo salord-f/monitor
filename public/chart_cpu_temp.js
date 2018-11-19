@@ -1,4 +1,6 @@
-var socket = io.connect('http://localhost:3000');
+var socket = io.connect('http://localhost:3000', {
+    reconnection: false
+});
 
 var chart_cpu_temp = new Chart(document.getElementById("chart_cpu_temp"), {
     type: 'line',
