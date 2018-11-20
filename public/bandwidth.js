@@ -61,10 +61,11 @@ var chart_bandwidth = new Chart(document.getElementById("chart_bandwidth"), {
 
 var i = 0;
 socket.on('bandwidth', function (data) {
-    bandwidth_add_data(chart_bandwidth, '', data);
     if (i > 50) {
         bandwidth_pop_data(chart_bandwidth);
     } else i++;
+    bandwidth_add_data(chart_bandwidth, '', data);
+
 });
 
 function bandwidth_add_data(chart, label, data) {

@@ -3,7 +3,6 @@ cpu_temp: cpu_temp.c
 
 all:
 	$(cpu_temp)
-	javac Bandwidth.java
 
 clean:
 	rm cpu_temp

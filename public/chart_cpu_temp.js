@@ -40,19 +40,20 @@ var chart_cpu_temp = new Chart(document.getElementById("chart_cpu_temp"), {
 
 var i = 0;
 socket.on('cpu_temp', function (data) {
-    addData(chart_cpu_temp, '', data);
     if (i > 50) {
-        popFirst(chart_cpu_temp);
+        cpu_temp_pop_first(chart_cpu_temp);
     } else i++;
+    cpu_temp_add_data(chart_cpu_temp, '', data);
+
 });
 
-function addData(chart, label, data) {
+function cpu_temp_add_data(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets[0].data.push(data);
     chart.update();
 }
 
-function popFirst(chart) {
+function cpu_temp_pop_first(chart) {
     chart.data.labels.shift();
     chart.data.datasets[0].data.shift();
 }

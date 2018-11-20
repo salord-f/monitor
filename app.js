@@ -1,8 +1,6 @@
 var shell = require('shelljs');
 var morgan = require('morgan');
 var express = require('express');
-//var logger = require('./log').logger;
-//var bodyParser = require('body-parser');
 
 var app = express(),
     server = require('http').createServer(app),
@@ -29,12 +27,9 @@ function update_data() {
     io.emit('cpu_temp', code);
 }
 
-function update_bandwidth() {
-    var child = shell.exec('java -cp utilities Bandwidth', {async: true, silent: true});
-    child.stdout.on('data', function (data) {
-        io.emit('bandwidth', data);
-    });
-}
+var child = shell.exec('python3 -u utilities/bandwidth.py', {async: true, silent: true});
+child.stdout.on('data', function (data) {
+    io.emit('bandwidth', data);
+});
 
 setInterval(update_data, 1000);
-setInterval(update_bandwidth, 2000);

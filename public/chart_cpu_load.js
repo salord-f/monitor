@@ -64,13 +64,13 @@ var chart_cpu_load = new Chart(document.getElementById("chart_cpu_load"), {
 
 var i = 0;
 socket.on('cpu_load', function (data) {
-    cpu_add_data(chart_cpu_load, '', data);
     if (i > 50) {
-        cpu_pop_first(chart_cpu_load);
+        cpu_load_pop_first(chart_cpu_load);
     } else i++;
+    cpu_load_add_data(chart_cpu_load, '', data);
 });
 
-function cpu_add_data(chart, label, data) {
+function cpu_load_add_data(chart, label, data) {
     var cpu_load = data.toString().split(' ');
     chart.data.labels.push(label);
     chart.data.datasets[0].data.push(parseFloat(cpu_load[4].slice(0, -1)));
@@ -78,7 +78,7 @@ function cpu_add_data(chart, label, data) {
     chart.update();
 }
 
-function cpu_pop_first(chart) {
+function cpu_load_pop_first(chart) {
     chart.data.labels.shift();
     chart.data.datasets[0].data.shift();
     chart.data.datasets[1].data.shift();
