@@ -1,50 +1,49 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bandwidth {
 
     public static void main(String[] args) {
 
-        //System.out.println("Interface not yet implemented");
         String exclude = "time,interface,state,rx_dupe,rx_ooo,re-tx,rtt_avg,rcvsize,tx_win,tc_class,tc_mgt,cc_algo,P,C,R,W";
         String[] cmd = {
                 "/bin/sh",
                 "-c",
-                "nettop -k " + exclude + " -d -c -s 1 -l 2 | grep -v -e udp -e tcp"
+                "nettop -k " + exclude + " -P -c -s 1 -d -n -l 2"
         };
 
-        StringBuilder output = new StringBuilder();
-
-        Process p;
         try {
-            p = Runtime.getRuntime().exec(cmd);
+            Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+            reader.readLine();
+            while (!reader.readLine().startsWith("time")) ;
 
             String line;
+            List<String> lines = new ArrayList<>();
             while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
+                lines.add(line);
             }
 
+            int bandwidthIn = 1;
+            int bandwidthOut = -1;
+
+            for (String s : lines) {
+                String[] in = s.split("  +")[1].split(" +");
+                String[] out = s.split("  +")[2].split(" +");
+
+                bandwidthIn += Integer.parseInt(in[0]) * BYTES.valueOf(in[1]).value;
+                bandwidthOut += Integer.parseInt(out[0]) * BYTES.valueOf(out[1]).value;
+            }
+
+            System.out.println(bandwidthIn + ";" + bandwidthOut);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        int bandwidthIn = 0;
-        int bandwidthOut = 0;
-
-        String[] lines = output.toString().split("time")[2].split("\n");
-
-        for (int i = 1; i < lines.length; i++) {
-            String[] in = lines[i].split("  +")[1].split(" +");
-            String[] out = lines[i].split("  +")[2].split(" +");
-
-            bandwidthIn += Integer.parseInt(in[0]) * BYTES.valueOf(in[1]).value;
-            bandwidthOut += Integer.parseInt(out[0]) * BYTES.valueOf(out[1]).value;
-        }
-
-        System.out.println(bandwidthIn + ";" + bandwidthOut);
     }
 
     private enum BYTES {
