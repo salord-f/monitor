@@ -1,4 +1,4 @@
 #/usr/bin/bash
 
-make -C c/;
+make -C utilities/;
 npm install;

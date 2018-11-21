@@ -23,13 +23,17 @@ app.use(morgan('combined'))
 
 function update_data() {
     const {code} = shell.exec('utilities/cpu_temp');
-    io.emit('cpu_load', shell.exec('top -R -F -n0 -s3 -l 1 | grep "CPU usage"', {silent: true}));
     io.emit('cpu_temp', code);
 }
 
-var child = shell.exec('python3 -u utilities/bandwidth.py', {async: true, silent: true});
-child.stdout.on('data', function (data) {
+var bandwidth = shell.exec('python3 -u utilities/bandwidth.py', {async: true, silent: true});
+bandwidth.stdout.on('data', function (data) {
     io.emit('bandwidth', data);
+});
+
+var cpu_load = shell.exec('python3 -u utilities/cpu_load.py', {async: true, silent: true});
+cpu_load.stdout.on('data', function (data) {
+    io.emit('cpu_load', data);
 });
 
 setInterval(update_data, 1000);

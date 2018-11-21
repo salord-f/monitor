@@ -71,10 +71,10 @@ socket.on('cpu_load', function (data) {
 });
 
 function cpu_load_add_data(chart, label, data) {
-    var cpu_load = data.toString().split(' ');
+    var cpu_load = data.toString().split(';');
     chart.data.labels.push(label);
-    chart.data.datasets[0].data.push(parseFloat(cpu_load[4].slice(0, -1)));
-    chart.data.datasets[1].data.push(parseFloat(cpu_load[2].slice(0, -1)) + parseFloat(cpu_load[4].slice(0, -1)));
+    chart.data.datasets[0].data.push(parseFloat(cpu_load[0]));
+    chart.data.datasets[1].data.push(parseFloat(cpu_load[0]) + parseFloat(cpu_load[1]));
     chart.update();
 }
 

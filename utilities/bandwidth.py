@@ -1,8 +1,9 @@
 import time
 import psutil
 
+
 def main():
-    old_send = 0    
+    old_send = 0
     old_recv = 0
 
     while True:
@@ -17,10 +18,13 @@ def main():
 
         time.sleep(1)
 
+
 def convert_to_gbit(value):
-    return value#/1024#./1024./1024.*8
+    return value  # /1024#./1024./1024.*8
+
 
 def send_stat(send, recv):
-    print ("%.0f;%.0f" % (convert_to_gbit(send),convert_to_gbit(recv)))
+    print("%.0f;%.0f" % (convert_to_gbit(send), convert_to_gbit(recv)))
+
 
 main()
