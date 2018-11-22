@@ -1,7 +1,3 @@
-var socket = io.connect('http://localhost:3000', {
-    reconnection: false
-});
-
 const bandwidth_colors = {
     red: {
         fill: '#ff762e',
@@ -60,7 +56,7 @@ var chart_bandwidth = new Chart(document.getElementById("chart_bandwidth"), {
 });
 
 var i = 0;
-socket.on('bandwidth', function (data) {
+window.glob.on('bandwidth', function (data) {
     if (i > 50) {
         bandwidth_pop_data(chart_bandwidth);
     } else i++;

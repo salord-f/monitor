@@ -1,7 +1,3 @@
-var socket = io.connect('http://localhost:3000', {
-    reconnection: false
-});
-
 const cpu_load_colors = {
     red: {
         fill: '#ff762e',
@@ -63,7 +59,7 @@ var chart_cpu_load = new Chart(document.getElementById("chart_cpu_load"), {
 });
 
 var i = 0;
-socket.on('cpu_load', function (data) {
+window.glob.on('cpu_load', function (data) {
     if (i > 50) {
         cpu_load_pop_first(chart_cpu_load);
     } else i++;

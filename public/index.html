@@ -17,6 +17,11 @@
 
 <script src="/chart.js/Chart.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+<script>
+    window.glob = io.connect('http://localhost:3000', {
+        reconnection: false
+    });
+</script>
 <script src="chart_cpu_temp.js"></script>
 <script src="chart_cpu_load.js"></script>
 <script src="bandwidth.js"></script>

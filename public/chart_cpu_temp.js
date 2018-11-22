@@ -1,7 +1,3 @@
-var socket = io.connect('http://localhost:3000', {
-    reconnection: false
-});
-
 var chart_cpu_temp = new Chart(document.getElementById("chart_cpu_temp"), {
     type: 'line',
     data: {
@@ -39,7 +35,7 @@ var chart_cpu_temp = new Chart(document.getElementById("chart_cpu_temp"), {
 });
 
 var i = 0;
-socket.on('cpu_temp', function (data) {
+window.glob.on('cpu_temp', function (data) {
     if (i > 50) {
         cpu_temp_pop_first(chart_cpu_temp);
     } else i++;
