@@ -10,14 +10,15 @@
 <body>
 <h1>Monitor</h1>
 <p>Welcome to a (very) basic mac monitor</p>
-<div>
-    <canvas id="chart_cpu_temp" style="left:10px; right:40px; height:200px;"></canvas>
+
+<div class="chart-container" style="position: relative; height:30vh; width:80vw">
+    <canvas id="chart_cpu_temp"></canvas>
 </div>
-<div>
-    <canvas id="chart_cpu_load" style="left:10px; right:40px; height:200px;"></canvas>
+<div class="chart-container" style="position: relative; height:30vh; width:80vw">
+    <canvas id="chart_cpu_load"></canvas>
 </div>
-<div>
-    <canvas id="chart_bandwidth" style="left:10px; right:40px; height:200px;"></canvas>
+<div class="chart-container" style="position: relative; height:30vh; width:80vw">
+    <canvas id="chart_bandwidth"></canvas>
 </div>
 
 <script src="/chart.js/Chart.min.js"></script>
