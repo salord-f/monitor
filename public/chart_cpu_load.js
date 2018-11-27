@@ -29,9 +29,8 @@ var chart_cpu_load = new Chart(document.getElementById("chart_cpu_load"), {
         }]
     },
     options: {
-        responsive: false,
-        width: 1000,
-        height: 600,
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
             yAxes:
                 [{
@@ -60,7 +59,7 @@ var chart_cpu_load = new Chart(document.getElementById("chart_cpu_load"), {
 
 var i = 0;
 window.glob.on('cpu_load', function (data) {
-    if (i > 50) {
+    if (i > 500) {
         cpu_load_pop_first(chart_cpu_load);
     } else i++;
     cpu_load_add_data(chart_cpu_load, '', data);

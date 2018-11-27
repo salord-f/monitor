@@ -4,16 +4,21 @@
 
 <head>
     <title>Monitor</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="/stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
 <h1>Monitor</h1>
 <p>Welcome to a (very) basic mac monitor</p>
-
-<canvas id="chart_cpu_temp"></canvas>
-<canvas id="chart_cpu_load"></canvas>
-<canvas id="chart_bandwidth"></canvas>
+<div>
+    <canvas id="chart_cpu_temp" style="left:10px; right:40px; height:200px;"></canvas>
+</div>
+<div>
+    <canvas id="chart_cpu_load" style="left:10px; right:40px; height:200px;"></canvas>
+</div>
+<div>
+    <canvas id="chart_bandwidth" style="left:10px; right:40px; height:200px;"></canvas>
+</div>
 
 <script src="/chart.js/Chart.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>

@@ -29,9 +29,8 @@ var chart_bandwidth = new Chart(document.getElementById("chart_bandwidth"), {
         }]
     },
     options: {
-        responsive: false,
-        width: 1000,
-        height: 600,
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
             yAxes:
                 [{
@@ -57,7 +56,7 @@ var chart_bandwidth = new Chart(document.getElementById("chart_bandwidth"), {
 
 var i = 0;
 window.glob.on('bandwidth', function (data) {
-    if (i > 50) {
+    if (i > 500) {
         bandwidth_pop_data(chart_bandwidth);
     } else i++;
     bandwidth_add_data(chart_bandwidth, '', data);
