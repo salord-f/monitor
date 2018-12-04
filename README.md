@@ -7,16 +7,17 @@ Currently able to display :
 - CPU temperature
 
 
-##Requirements :  
+## Requirements :  
+
 Intel Power Gadget : ```brew cask install intel-power-gadget```  
 or directly from [Intel website](https://software.intel.com/en-us/articles/intel-power-gadget-20).
 
-##Build
+## Build
 
 ```
 bash build.sh;
 ```
 
-##Run
+## Run
 ```node app.js```  
 Server is launched on ```http://localhost:3000/```
