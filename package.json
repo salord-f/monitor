@@ -6,7 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "chart.js": "^2.7.3",
+    "chart.js": "^2.9.4",
     "express": "~4.16.0",
     "morgan": "^1.9.1",
     "shelljs": "^0.8.3",
