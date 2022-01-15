@@ -9,7 +9,7 @@
     "chart.js": "^2.7.3",
     "express": "~4.16.0",
     "morgan": "^1.9.1",
-    "shelljs": "^0.8.3",
+    "shelljs": "^0.8.5",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
